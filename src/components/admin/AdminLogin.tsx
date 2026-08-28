@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { supabase } from '../../lib/supabase';
+import React, { useState, useEffect } from 'react';
+import { supabase, supabaseConnectionError } from '../../lib/supabase';
 import { Loader, ShieldCheck } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useNavigate } from 'react-router-dom';
@@ -11,8 +11,20 @@ export default function AdminLogin({ onLoginSuccess }: { onLoginSuccess: () => v
   const [errorMsg, setErrorMsg] = useState('');
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (!supabase) {
+      setErrorMsg(`Supabase Error: ${supabaseConnectionError}`);
+    }
+  }, []);
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!supabase) {
+      setErrorMsg(`Supabase Error: ${supabaseConnectionError}`);
+      return;
+    }
+
     if (!email.trim() || !password.trim()) {
       setErrorMsg("Please enter both email and password.");
       return;
@@ -22,8 +34,6 @@ export default function AdminLogin({ onLoginSuccess }: { onLoginSuccess: () => v
     setErrorMsg('');
 
     try {
-      if (!supabase) throw new Error("Supabase is not connected.");
-      
       const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password,
@@ -73,7 +83,7 @@ export default function AdminLogin({ onLoginSuccess }: { onLoginSuccess: () => v
           </div>
           
           {errorMsg && (
-            <div className="mb-6 bg-red-50 text-red-600 p-4 rounded-xl text-sm font-semibold text-center border border-red-100">
+            <div className="mb-6 bg-red-50 text-red-600 p-4 rounded-xl text-sm font-semibold text-center border border-red-100 break-words">
               {errorMsg}
             </div>
           )}
@@ -109,7 +119,7 @@ export default function AdminLogin({ onLoginSuccess }: { onLoginSuccess: () => v
 
             <button
               type="submit"
-              disabled={loading}
+              disabled={loading || !supabase}
               className="w-full bg-[#0B1F3A] hover:bg-[#2563EB] text-white py-3.5 px-4 rounded-xl font-black text-xs uppercase tracking-widest transition-all shadow-md active:translate-y-0.5 disabled:opacity-50 flex items-center justify-center gap-2 cursor-pointer"
             >
               {loading ? (

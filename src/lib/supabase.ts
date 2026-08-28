@@ -1,7 +1,11 @@
 import { createClient } from '@supabase/supabase-js';
 
 let supabaseUrl = (import.meta as any).env.VITE_SUPABASE_URL || '';
-const supabaseAnonKey = (import.meta as any).env.VITE_SUPABASE_ANON_KEY || '';
+let supabaseAnonKey = (import.meta as any).env.VITE_SUPABASE_ANON_KEY || '';
+
+// Clean strings (sometimes spaces get copied by mistake)
+supabaseUrl = supabaseUrl.trim();
+supabaseAnonKey = supabaseAnonKey.trim();
 
 // Automatically sanitize the URL if the user accidentally pasted the REST endpoint instead of the project URL
 if (supabaseUrl.endsWith('/rest/v1/')) {
@@ -20,6 +24,16 @@ const isValidHttpUrl = (url: string) => {
     return false;
   }
 };
+
+export let supabaseConnectionError = '';
+
+if (!supabaseUrl) {
+  supabaseConnectionError = 'VITE_SUPABASE_URL is missing.';
+} else if (!isValidHttpUrl(supabaseUrl)) {
+  supabaseConnectionError = `VITE_SUPABASE_URL is invalid (Check for missing https://): ${supabaseUrl}`;
+} else if (!supabaseAnonKey) {
+  supabaseConnectionError = 'VITE_SUPABASE_ANON_KEY is missing.';
+}
 
 // Lazy client setup to prevent crashing if the keys are missing or invalid
 export const supabase = supabaseUrl && supabaseAnonKey && isValidHttpUrl(supabaseUrl)
