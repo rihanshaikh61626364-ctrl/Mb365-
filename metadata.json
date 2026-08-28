@@ -1,0 +1,6 @@
+{
+  "name": "MyBooks365",
+  "description": "A premium eBook store landing page featuring dynamic hero slides, smooth transitions, product detail views with direct checkout, and full category catalog, styled beautifully with modern design systems.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

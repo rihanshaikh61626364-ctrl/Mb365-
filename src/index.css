@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+@theme {
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", "Inter", sans-serif;
+  --color-brand-pine: #0B1F3A;
+  --color-brand-pine-hover: #2563EB;
+  --color-brand-cream: #F8FAFC;
+  --color-brand-gold: #D4A72C;
+  --color-brand-text: #111827;
+  --color-brand-muted: #64748B;
+  --color-brand-secondary: #2563EB;
+}
+
+/* Custom subtle scrollbar styling */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

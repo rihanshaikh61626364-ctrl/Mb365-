@@ -1,0 +1,23 @@
+{
+  "name": "MyBooks365",
+  "short_name": "MyBooks365",
+  "description": "Premium eBook Store. Read. Learn. Grow.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAFAF9",
+  "theme_color": "#0B1F3A",
+  "icons": [
+    {
+      "src": "/IMG_20260828_220750.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/IMG_20260828_220750.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

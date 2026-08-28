@@ -1,0 +1,1 @@
+sed -i 's/if (error) throw error;/if (error) { if (error.message.includes("Bucket not found")) throw new Error("Storage Bucket not found. Please create a public storage bucket named '\''books'\'' in your Supabase dashboard."); else throw error; }/g' src/services/books.ts
