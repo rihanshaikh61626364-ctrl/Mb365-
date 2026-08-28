@@ -1,7 +1,8 @@
 import { createClient } from '@supabase/supabase-js';
 
-let supabaseUrl = (import.meta as any).env.VITE_SUPABASE_URL || '';
-let supabaseAnonKey = (import.meta as any).env.VITE_SUPABASE_ANON_KEY || '';
+// Hardcoded keys added directly as requested
+let supabaseUrl = (import.meta as any).env.VITE_SUPABASE_URL || 'https://fgsiesdyaxpntduqtjht.supabase.co';
+let supabaseAnonKey = (import.meta as any).env.VITE_SUPABASE_ANON_KEY || 'sb_publishable__BWUMGsnLAQ2ELVyTBxhjA_NU3lMmo-';
 
 // Clean strings (sometimes spaces get copied by mistake)
 supabaseUrl = supabaseUrl.trim();
