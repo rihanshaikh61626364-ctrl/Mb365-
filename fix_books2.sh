@@ -1,0 +1,1 @@
+sed -i 's/if (error) { console.error("\[Supabase Fetch Error\]:", error); throw error; }/if (error) { console.error("[Supabase Fetch Error]:", error); return activeLocalBooks; }/' src/services/books.ts

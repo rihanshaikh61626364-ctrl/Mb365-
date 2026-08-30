@@ -72,10 +72,10 @@ export async function checkIsAdmin(userId: string): Promise<boolean> {
 export async function getPublishedBooks(): Promise<Book[]> {
   if (!supabase) return activeLocalBooks.filter(b => b.is_featured !== false);
   try {
-    const { data, error } = await supabase.from('books').select('*');
-    if (error) return activeLocalBooks;
+    const { data, error } = await supabase.from('books').select('*').eq('status', 'published');
+    if (error) { console.error("[Supabase Fetch Error]:", error); return activeLocalBooks; }
     return data as Book[];
-  } catch {
+  } catch (err) { console.error("[Supabase Catch Error]:", err);
     return activeLocalBooks;
   }
 }
@@ -86,7 +86,7 @@ export async function getCategories(): Promise<Category[]> {
     const { data, error } = await supabase.from('categories').select('*').order('created_at', { ascending: true });
     if (error) return activeLocalCategories;
     return data as Category[];
-  } catch {
+  } catch (err) { console.error("[Supabase Catch Error]:", err);
     return activeLocalCategories;
   }
 }
@@ -132,10 +132,10 @@ export async function deleteCategory(id: string): Promise<void> {
 export async function getAllBooksAdmin(): Promise<Book[]> {
   if (!supabase) return activeLocalBooks;
   try {
-    const { data, error } = await supabase.from('books').select('*');
-    if (error) return activeLocalBooks;
+    const { data, error } = await supabase.from('books').select('*').eq('status', 'published');
+    if (error) { console.error("[Supabase Fetch Error]:", error); return activeLocalBooks; }
     return data as Book[];
-  } catch {
+  } catch (err) { console.error("[Supabase Catch Error]:", err);
     return activeLocalBooks;
   }
 }
