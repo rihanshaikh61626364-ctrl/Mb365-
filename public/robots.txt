@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Exclude admin and private routes
+Disallow: /admin/
+Disallow: /admin
+
+Sitemap: https://mybooks365.com/sitemap.xml

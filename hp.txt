@@ -1,0 +1,1 @@
+[{"id":"e74eb311-ea35-472b-ba1e-f17c211015ee","section_type":"bestselling","book_id":"3e2b1794-5590-4fd7-9c23-5d0b5c32bb71","display_order":0,"created_at":"2026-08-28T20:57:12.323629+00:00"}]
